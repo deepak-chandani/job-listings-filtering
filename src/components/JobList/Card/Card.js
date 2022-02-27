@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import { useFilters } from "../../../hooks/useFilters";
+import { useFilters } from "../../../hooks";
 import "./Card.scss";
 import classNames from "classnames";
 

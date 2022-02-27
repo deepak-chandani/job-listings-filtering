@@ -1,5 +1,5 @@
 import React from "react";
-import { useFilters } from "../../hooks/useFilters";
+import { useFilters } from "../../hooks";
 import "./Filters.scss";
 import SelectedSkill from "./SelectedSkill";
 

@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header'
+import './App.scss';
+import JobList from './components/JobList/JobList';
+import Filters from './components/Filters';
+import {useJobs} from './hooks/';
 
 function App() {
+  const {jobs, isLoading} = useJobs()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Header />
+      <Filters />
+      {isLoading && <p>Loading jobs...</p>}
+      {!isLoading && <JobList jobs={jobs} />}
+    </main>
   );
 }
 

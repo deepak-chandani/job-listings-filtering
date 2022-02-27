@@ -7,7 +7,10 @@ export function useJobs(){
 
   useEffect(() => {
     fetchJobs()
-    .then(data => dispatch({type: ACTION_TYPES.SET_JOBS, jobs: data}))
+    .then(data => {
+      dispatch({type: ACTION_TYPES.SET_JOBS, jobs: data})
+      dispatch({type: ACTION_TYPES.ADD_FILTER, filter: 'React'})
+    })
   }, [dispatch])
 
   const filteredJobs = jobs && jobs.filter(job => filters.every(f => job.languages.includes(f) || job.tools.includes(f)))

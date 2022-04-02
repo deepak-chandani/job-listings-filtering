@@ -12,6 +12,7 @@
   - [My process](#my-process)
     - [Built with](#built-with)
     - [Solution approach](#solution-approach)
+      - [Custom hooks](#custom-hooks)
     - [Useful resources](#useful-resources)
     - [Continued development](#continued-development)
   - [Author](#author)
@@ -50,28 +51,30 @@ What I wanted to achieve from this
 
 ### Solution approach
 
-- Created custom Provider component (`JobsProvider`) which holds job related application state & saves us from prop-drilling.
+- Created custom Provider component (`JobsProvider`) which holds job related data
+- `JobsProvider` saves us from [prop-drilling](https://beta.reactjs.org/learn/passing-data-deeply-with-context) & allows to share data across different parts of application component tree.
 ```jsx
 // wrap your App inside JobsProvider
 <JobsProvider>
   <App />
 </JobsProvider>
 ```
-- Custom utility hooks
+#### Custom hooks
+- I created a few custom hooks to keep state/actions logic separated & reusable in different components
 - `useJobs()` - fetches jobs data & returns filtered jobs array
 ```jsx
 const {jobs, isLoading} = useJobs()
 ```
-
-  - `useFilters()` - returns currently applied filters & functions to add/remove filter
+  - `useFilters()` - returns currently applied filters & functions to add/remove/clearAll filter
 ```jsx
-const {filters, isFilterApplied, removeFilter, clearFilters} = useFilters()
+const {filters, isFilterApplied, addFilter, removeFilter, clearFilters} = useFilters()
 ```
+  - `addFilter(skill)`, `removeFilter(skill)` - are just helper functions which `dispatch` appropriate action(s) under the hood
 
 ### Useful resources
-
+- [Context API](https://beta.reactjs.org/apis#context)
 - [Using React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively) - This helped me structuring `<JobsProvider>` & designing custom-hooks. I really liked this pattern and will use it going forward.
-- **NOTE:** I still feel [Redux Toolkit](https://redux-toolkit.js.org/) is much better for state management in mid-size or big applications.
+- **NOTE:** I still feel [Redux Toolkit](https://redux-toolkit.js.org/) is much better for global state management in mid-size or big applications.
 
 ### Continued development
 - I would like to use [styled-components](https://styled-components.com/) library for writing CSS-in-JS approach, would definitely try it.
